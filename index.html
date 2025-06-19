@@ -3,12 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
-</head>
+    <title>Spes | Minimal Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> 
 <body>
-    
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                <span>Spes</span>
+            </a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact Me</a>
+            </div>
+            
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
 
-    <script src="scripts.js"></script>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>I'm </h1>
+                <h1>Albert NIYONSENGA</h1></p>
+                <P><b>A Frontend Developer</b></P>
+                <p>I create elegant, functional digital experiences with a focus on minimalism and user-centered design. Passionate about clean code and intuitive interfaces.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-paper-plane"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <div class="profile-circle">
+                        <img src="Assets/profile.png" alt="Rion Lot">
+                    </div>
+                    <div class="circle-deco"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate frontend developer with expertise in HTML, CSS, JavaScript, and modern frameworks like React and Vue. I specialize in creating responsive and accessible web applications that provide exceptional user experiences.</p>
+                <p>With a background in UI/UX design, I approach development with an eye for detail and a focus on creating intuitive interfaces. I believe that great design and clean code go hand in hand to create products that users love.</p>
+                
+                <div class="skills">
+                    <span class="skill">HTML5</span>
+                    <span class="skill">CSS3</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">Git</span>
+                    <span class="skill">Linux</span>
+                    <span class="skill">Responsive Design</span>
+                    <span class="skill">Web Infra</span>
+                    <span class="skill">GitHub</span>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card glass">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-number">120+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <div class="glass" style="height: 100%; display: flex; align-items: center; justify-content: center; padding: 40px;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-laptop-code" style="font-size: 70px; margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; font-weight: 600;">Pragramatic Code</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.7;">Focus on performance, accessibility, and maintainability</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Gallery-->
+    <section class="slider-section" id="gallery">
+            <h2 class="section-title">Gallery</h2>
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Code Editor">
+                        <div class="slide-content">
+                            <h2 class="slide-title">Developer Portfolio</h2>
+                            <p class="slide-description">A showcase of innovative web development projects and coding expertise.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Project Management">
+                        <div class="slide-content">
+                            <h2 class="slide-title">Project Management</h2>
+                            <p class="slide-description">Streamline your workflow with our efficient project management solution.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="UI Design">
+                        <div class="slide-content">
+                            <h2 class="slide-title">UI/UX Design</h2>
+                            <p class="slide-description">Beautiful interfaces designed for exceptional user experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- Dots will be added by JavaScript -->
+            </div>
+            
+            <div class="auto-indicator">
+                <i class="fas fa-sync-alt"></i> Auto-advances every 10 seconds
+            </div>
+    </section>
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Assets/ai-assistant.jpg" alt="Code Editor Project">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Web Code Editor</h3>
+                        <p class="project-description">A real-time collaborative code editor with syntax highlighting for multiple programming languages.</p>
+                        <div class="project-link">
+                            <a href="https://github.com" class="github-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Assets/dashboard.jpg" alt="Data Visualization">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Data Dashboard</h3>
+                        <p class="project-description">Interactive data visualization dashboard that transforms complex datasets into meaningful insights.</p>
+                        <div class="project-link">
+                            <a href="https://github.com" class="github-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Assets/wine.jpg" alt="E-commerce Platform">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">Full-featured online shopping solution with secure payments and personalized recommendations.</p>
+                        <div class="project-link">
+                            <a href="https://github.com" class="github-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Assets/dice.jpg" alt="E-commerce Platform">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">Full-featured online shopping solution with secure payments and personalized recommendations.</p>
+                        <div class="project-link">
+                            <a href="https://github.com" class="github-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <!-- Quote Card -->
+                <div class="quote-card">
+                    <div class="author-image">
+                        <img src="Assets/Powell.jpeg" alt="John Joseph Powell">
+                    </div>
+                    <blockquote>
+                        “It is an absolute human certainty that no one can know his own beauty or perceive a sense of his own worth until it has been reflected back to him in the mirror of another loving, caring human being.”
+                    </blockquote>
+                    <div class="author">― John Joseph Powell, The Secret of Staying in Love</div>
+                    <div class="connect-text">
+                        Let's start a connect 🤗
+                    </div>
+                </div>
+                
+                <!-- Contact Form Card -->
+                <div class="form-card">
+                    <h2 class="form-title">Send Me a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" class="form-control" required>
+                            <div class="error-message" id="nameError">Please enter a valid name (letters only, 2-30 characters)</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                            <div class="error-message" id="emailError">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                            <div class="error-message" id="subjectError">Subject must be at least 5 words</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required maxlength="255"></textarea>
+                            <div class="word-count"><span id="wordCount">0</span>/255 words</div>
+                            <div class="error-message" id="messageError">Message must not exceed 255 words</div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+    </section>
+    <!-- Modal for validation messages -->
+    <div class="modal" id="validationModal">
+        <div class="modal-content">
+            <h2 class="modal-title" id="modalTitle">Validation Error</h2>
+            <p class="modal-message" id="modalMessage">Please correct the errors in the form.</p>
+            <button class="close-modal" id="closeModal">OK, I Understand</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                &copy; 2025 Spes. All Rights Reserved
+            </div>
+            <div class="footer-center">
+                Made with <span class="heart">❤️</span> from Rwanda
+            </div>
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <script src="script.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script> <!--EmailJs-->
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "7JnczqwS-1ntxBzPc",
+            }); // Here i'll replace my EmailJs User Id
+        })();
+    </script>
 </body>
 </html>
