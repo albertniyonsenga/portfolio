@@ -1,27 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS first
-    emailjs.init("7JnczqwS-1ntxBzPc", {
-        publicKey: "7JnczqwS-1ntxBzPc"
-    });
+    // Form-to-email endpoint
+    const FORM_TO_EMAIL_ENDPOINT = "https://www.form-to-email.com/api/s/bjI1dGb6PK6t";
     
-    console.log("EmailJS initialized");
-    
-    // DOM Elements for contact form
+    // DOM Elements
     const contactForm = document.getElementById('contactForm');
-    const validationModal = document.getElementById('validationModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalMessage = document.getElementById('modalMessage');
-    const closeModal = document.getElementById('closeModal');
+    const statusMessage = document.getElementById('statusMessage');
+    const submitBtn = document.getElementById('submitBtn');
     const messageInput = document.getElementById('message');
     const wordCount = document.getElementById('wordCount'); 
-
-    // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
+    const slider = document.getElementById('slider');
+    const slides = document.querySelectorAll('.slide');
+    const pagination = document.getElementById('pagination');
+    const navLinks = document.getElementById('navLinks');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
+    // Theme Toggle
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+    // Set initial theme
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        body.classList.add('dark-mode');
+    }
 
-    // EmailJS Service
-    const SERVICE_ID = "service_8c1m9c5"; 
-    const TEMPLATE_ID = "template_7nu9xho";
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
 
     // Update word count for message input field
     messageInput.addEventListener('input', function() {
@@ -36,25 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Check for saved theme or prefer-color-scheme
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-    // Set initial theme
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        body.classList.add('dark-mode');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-    });
-
-    // Slider elements
-    const slider = document.getElementById('slider');
-    const slides = document.querySelectorAll('.slide');
-    const pagination = document.getElementById('pagination');
-                
     // Slider state
     let currentIndex = 0;
     let slideCount = slides.length;
@@ -108,8 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
             
     // Scroll to top button
-    const scrollTopBtn = document.getElementById('scrollTop');
-
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             scrollTopBtn.classList.add('active');
@@ -131,25 +118,22 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
                     
             const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                
-                // Update active link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
                 });
-                this.classList.add('active');
-                }
+            
+            // Update active link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
             });
+            this.classList.add('active');
+            }
+        });
     });
 
     // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-
     mobileMenuBtn.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
@@ -196,131 +180,99 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Form validation functions
-    function validateName(name) {
-        const re = /^[a-zA-Z\s]{2,30}$/;
-        return re.test(name);
-    }
-
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-
-    function validateSubject(subject) {
-        return subject.trim().split(/\s+/).length >= 5;
-    }
-
-    function validateMessage(message) {
-        return message.trim().split(/\s+/).length <= 255;
-    }
-
-    // Modal functions
-    function showModal(title, message) {
-        modalTitle.textContent = title;
-        modalMessage.textContent = message;
-        validationModal.style.display = 'flex';
-        
-        // Auto-close success messages
-        if (title === "Success!") {
-            setTimeout(() => {
-                validationModal.style.display = 'none';
-            }, 4000);
-        }
-    }
-
-    closeModal.addEventListener('click', () => {
-        validationModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === validationModal) {
-            validationModal.style.display = 'none';
-        }
-    });
-
-    // Form submission
-    contactForm.addEventListener('submit', function(e) {
+    // Form validation and submission
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-                    
-        // Get form values
-        const firstName = document.getElementById('firstName').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-                    
+        
         // Reset errors
-        document.querySelectorAll('.error-message').forEach(el => {
-            el.style.display = 'none';
+        document.querySelectorAll('.error-message').forEach(e => {
+            e.style.display = 'none';
         });
+        
+        // Get form values
+        const name = this.querySelector('[name="name"]').value;
+        const email = this.querySelector('[name="email"]').value;
+        const subject = this.querySelector('[name="subject"]').value;
+        const message = this.querySelector('[name="message"]').value;
         
         // Validate inputs
         let isValid = true;
-        let errorMessage = "";
-                    
-        if (!validateName(firstName)) {
+        
+        // Name validation
+        if (!name || name.trim().length < 2 || name.trim().length > 30 || !/^[a-zA-Z\s]+$/.test(name)) {
             document.getElementById('nameError').style.display = 'block';
             isValid = false;
-            errorMessage = "• Name must contain only letters and be 2-30 characters\n";
         }
         
-        if (!validateEmail(email)) {
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
             document.getElementById('emailError').style.display = 'block';
             isValid = false;
-            errorMessage += "• Please enter a valid email address\n";
         }
         
-        if (!validateSubject(subject)) {
+        // Subject validation
+        if (!subject || subject.split(/\s+/).length < 2) {
             document.getElementById('subjectError').style.display = 'block';
             isValid = false;
-            errorMessage += "• Subject must contain at least 5 words\n";
         }
         
-        if (!validateMessage(message)) {
+        // Message validation
+        if (!message || message.trim().split(/\s+/).length > 255) {
             document.getElementById('messageError').style.display = 'block';
             isValid = false;
-            errorMessage += "• Message must not exceed 255 words";
         }
         
         if (!isValid) {
-            showModal("Form Validation Error", errorMessage);
             return;
         }
-                    
-        // If all valid, send email
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalBtnText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        btn.disabled = true;
         
-        console.log("Sending email with params:", {
-            to_name: "Albert",
-            from_name: firstName,
-            from_email: email,
-            subject: subject,
-            message: message
-        });
+        // Disable submit button and show loading
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         
-        // Send email via EmailJS - FIXED PARAMETERS
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-            to_name: "Albert",
-            from_name: firstName,
-            from_email: email,
-            subject: subject,
-            message: message
-        })
-        .then(function(response) {
-            console.log("Email sent successfully:", response);
-            showModal("Success!", "Your message has been sent successfully! I'll get back to you soon.");
-            contactForm.reset();
-            wordCount.textContent = "0";
-        }, function(error) {
-            console.error("Email send failed:", error);
-            showModal("Error", "Failed to send your message. Status: " + error.status);
-        })
-        .finally(function() {
-            btn.innerHTML = originalBtnText;
-            btn.disabled = false;
-        });
+        try {
+            // Create form data
+            const formData = Object.fromEntries(new FormData(contactForm).entries());
+            
+            // Send form data to Form-to-email
+            const response = await fetch(FORM_TO_EMAIL_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+            
+            if (response.ok) {
+                showStatusMessage('Message sent successfully!', true);
+                // Reset form
+                contactForm.reset();
+                // Reset word count
+                wordCount.textContent = '0';
+            } else {
+                showStatusMessage('Failed to send message. Please try again.', false);
+            }
+        } catch (error) {
+            showStatusMessage('Network error. Please check your connection.', false);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        }
     });
+
+    // Show status message function
+    function showStatusMessage(message, isSuccess) {
+        statusMessage.textContent = message;
+        statusMessage.className = 'status-message ' + (isSuccess ? 'success' : 'error');
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            statusMessage.style.animation = 'fadeOut 0.5s ease';
+            setTimeout(() => {
+                statusMessage.className = 'status-message';
+                statusMessage.style.animation = '';
+            }, 500);
+        }, 5000);
+    }
 });
