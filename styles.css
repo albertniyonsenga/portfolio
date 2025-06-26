@@ -356,17 +356,6 @@ body.dark-mode .btn:hover {
     object-fit: cover;
 }
 
-.circle-deco {
-    position: absolute;
-    width: 120%;
-    height: 120%;
-    top: -10%;
-    left: -10%;
-    border-radius: 50%;
-    border: 1px dashed rgba(0, 0, 0, 0.1);
-    animation: rotate 20s linear infinite;
-}
-
 body.dark-mode .circle-deco {
     border: 1px dashed rgba(255, 255, 255, 0.1);
 }
@@ -385,34 +374,6 @@ body.dark-mode .circle-deco {
     margin-bottom: 25px;
     line-height: 1.8;
     font-size: 1.15rem;
-}
-
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 30px;
-}
-
-.skill {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 10px 22px;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    transition: var(--transition);
-}
-
-.skill:hover {
-    transform: translateY(-3px);
-    background: rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .skill {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-body.dark-mode .skill:hover {
-    background: rgba(255, 255, 255, 0.1);
 }
 
 .about-stats {
@@ -659,26 +620,10 @@ body.dark-mode .skill-tag:hover {
     display: block;
 }
 
-.slide-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    background: linear-gradient(transparent, rgba(112, 102, 102, 0.8));
-    text-align: left;
-}
-
 .slide-title {
     font-size: 1.8rem;
     margin-bottom: 8px;
     font-weight: 600;
-}
-
-.slide-description {
-    font-size: 1rem;
-    opacity: 0.9;
-    max-width: 600px;
 }
 
 .pagination {
@@ -1456,8 +1401,8 @@ body.dark-mode .scroll-top {
 
     .theme-toggle {
         width: 42px;
-        margin-left: auto;
-        margin-right: 30px;
+        margin-left: 50%;
+        /* margin-right: 3px; */
         height: 42px;
         display: flex;
         align-items: center;
@@ -1511,7 +1456,14 @@ header {
         z-index: 101;
     }
 
-    .theme-toggle,
+    .theme-toggle {
+        position: absolute;
+        right: 20px;
+        top: -4px;
+        display: flex;
+        gap: 15px;
+        z-index: 101;
+    }
     .mobile-menu-btn {
         width: 42px;
         height: 42px;
@@ -1528,18 +1480,14 @@ header {
         justify-content: center;
     }
 
-    body.dark-mode .theme-toggle,
     body.dark-mode .mobile-menu-btn {
         background: rgba(255, 255, 255, 0.05);
     }
-
-    .theme-toggle:hover,
     .mobile-menu-btn:hover {
         transform: scale(1.08);
         background: rgba(0, 0, 0, 0.1);
     }
 
-    body.dark-mode .theme-toggle:hover,
     body.dark-mode .mobile-menu-btn:hover {
         background: rgba(255, 255, 255, 0.1);
     }
