@@ -447,6 +447,183 @@ body.dark-mode .stat-label {
     color: #aaa;
 }
 
+/* Resume*/
+.resume-section {
+    margin: 60px 0;
+}
+
+.resume-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.resume-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.resume-column h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.resume-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.resume-item {
+    padding: 25px;
+    transition: var(--transition);
+    border-radius: 12px;
+}
+
+.resume-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .resume-item {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.resume-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+
+.resume-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.resume-date {
+    font-weight: 500;
+    color: #0072ff;
+}
+
+.resume-desc {
+    line-height: 1.7;
+    margin-top: 15px;
+}
+
+.skill-category {
+    margin-bottom: 20px;
+}
+
+.skill-category h5 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.skill-category h5 i {
+    margin-right: 10px;
+    color: #0072ff;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.skill-tag {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+body.dark-mode .skill-tag {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.skill-tag:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .skill-tag:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.resume-download {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-download {
+    padding: 15px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #4CAF50, #2E7D32);
+    color: white;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn-download:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.cert-badge {
+    display: inline-block;
+    background: rgba(255, 193, 7, 0.15);
+    color: #FFC107;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 950px) {
+    .resume-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .resume-column h3 {
+        text-align: center;
+    }
+    
+    .resume-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
 /*Gallery*/
 .slider-section {
     margin: 60px 0;
